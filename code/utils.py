@@ -136,7 +136,7 @@ def categorize(detection_result: processor.DetectionResult):
     Args:
       detection_result: The list of all "Detection" entities.
     Returns:
-      Name, score, and index of an object in centimeters
+      Name, score, and index of an object
     """
     for detection in detection_result.detections:
         # Find the category
