@@ -39,6 +39,9 @@ def run(
     Return:
       delay_list: list of recorded delay_time
       fps_list: list of recorded FPS value
+      detected_list: list of bool values of whether object is detected or not
+      final_dimension_list: list of predicted dimensions for detection sessions
+      true_dim_list: list of true dimensions for detection sessions
     """
 
     # Variables to calculate FPS

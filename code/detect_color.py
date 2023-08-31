@@ -39,6 +39,10 @@ def run(
     Return:
       delay_list: list of recorded delay_time
       fps_list: list of recorded FPS value
+      detected_list: list of bool values of whether object is detected or not
+      final_score_list: list of probability scores for detection sessions
+      final_color_list: list of predicted colors for detection sessions
+      true_color_list: list of true color for detection sessions
     """
 
     # Variables to calculate FPS
