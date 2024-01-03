@@ -1,0 +1,7 @@
+Delay,FPS,Latency (Regs),Latency (Coils),Detected,Blue,Green,Red,Prediction,Label
+-0.605,30.013,0.007966,0.014415,1.0,55.0,232.0,254.0,yellow_duck,yellow_duck
+-0.569,29.382,0.008137,0.007501,1.0,205.0,172.0,73.0,blue_duck,yellow_duck
+-0.134,29.407,0.008832,0.008443,1.0,211.0,130.0,255.0,pink_duck,yellow_duck
+-0.564,29.217,0.010075,0.006962,1.0,205.0,172.0,73.0,blue_duck,yellow_duck
+-0.593,30.428,0.011999,0.007097,1.0,55.0,232.0,254.0,yellow_duck,yellow_duck
+-0.618,29.891,0.008353,0.008088,1.0,211.0,130.0,255.0,pink_duck,yellow_duck
