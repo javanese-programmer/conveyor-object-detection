@@ -143,7 +143,7 @@ def color_detection(img, bbox):
     return detected, object_id, object_color, object_name
 
 
-def contour_detection(img, bbox, offset:int=17, targetArea=750):
+def contour_detection(img, bbox, offset:int=17, targetArea=14000):
     """Apply Contour Detection
     Args:
       img: image to be processed
@@ -191,40 +191,41 @@ def contour_detection(img, bbox, offset:int=17, targetArea=750):
             
             # draw every detected contour with area larger than the target
             for cnt in contours:
-                area = cv2.contourArea(cnt)
+                # area = cv2.contourArea(cnt)
                 
                 # Add offset to the contour coordinate
                 cnt[:,:,0] = cnt[:,:,0] + cnt_offset[0]
                 cnt[:,:,1] = cnt[:,:,1] + cnt_offset[1]
                 
-                # If target < area < 3000 px, count as detected
-                if area > targetArea and area < 3000:
+                # Approximate number of corner points, box coordinate, and area
+                perimeter = cv2.arcLength(cnt, True)
+                approx = cv2.approxPolyDP(cnt, 0.02*perimeter, True)
+                x, y, w, h = cv2.boundingRect(approx)
+                boxArea = w*h
+                
+                # If target < box area < 30000 px, count as detected
+                if boxArea > targetArea and boxArea < 30000:
                     detected = True
                     
                     # Draw contours on image
                     cv2.drawContours(img, cnt, -1, (255, 0, 255), 3)
                 
-                    # Approximate number of corner points
-                    perimeter = cv2.arcLength(cnt, True)
-                    approx = cv2.approxPolyDP(cnt, 0.02*perimeter, True)
-                
                     # Collect the area and the number of corner points
-                    object_contour = (int(area), len(approx))
+                    object_contour = (int(boxArea), len(approx))
                 
                     # Classify object based on area and number of corner points
-                    if object_contour[0] <= 1100:
+                    if (object_contour[0] >= 23000) and (object_contour[1] <= 11):
+                        object_id = 0
+                        object_name = 'duck'
+                    elif ((object_contour[0] < 23000) and (object_contour[0] > 18000)
+                          and (object_contour[1] >= 9)):
+                        object_id = 1
+                        object_name = 'cock'
+                    elif (object_contour[0] <= 18000) and (object_contour[1] <= 11):
                         object_id = 2
                         object_name = 'chick'
-                    elif object_contour[0] > 1100:
-                        if object_contour[1] <= 12:
-                            object_id = 0
-                            object_name = 'duck'
-                        else:
-                            object_id = 1
-                            object_name = 'cock'
                 
                     # Draw box, draw contour, and add text
-                    x, y, w, h = cv2.boundingRect(approx)
                     cv2.rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 4)
                     cv2.putText(img, "Class: " + object_name, (x+w+10, y+15),
                                 cv2.FONT_HERSHEY_COMPLEX, 0.7, (0, 0, 255), 2)
