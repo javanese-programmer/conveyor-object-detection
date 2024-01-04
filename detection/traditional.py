@@ -95,7 +95,8 @@ class TraditionalDetector():
                 print("")
                 
             # If object is detected on camera, restart CMR timer
-            if predictions[0] and ((time.time() - calc.old_cmr_time) >= LIMIT_CMR_TIME):
+            if (predictions[0] and flags.detected_ir and (predictions[3] != '-') and
+                ((time.time() - calc.old_cmr_time) >= LIMIT_CMR_TIME)):
                 # Restart timer and reset flag
                 calc.restart_cmr()
                 flags.reverse_cmr()
