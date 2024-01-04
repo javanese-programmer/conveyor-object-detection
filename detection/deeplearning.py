@@ -264,11 +264,11 @@ class DeepDetector():
                 calc.coil_latency_list, self.detected_list, self.final_score_list,
                 self.final_pred_list, self.true_label_list)
     
-    def capture(self, all_images: bool, vid_filename: str, true_label: str):
+    def capture(self, true_label: str, all_images: bool, vid_filename: str):
         """Method to capture detected object
         Args:
-            all_images: True/False whether to collect all images.
             true_label: true label for detected object.
+            all_images: True/False whether to collect all images.
             vid_filename: filename of output video.
         """
         # Define Flag and Calculator instance
@@ -316,7 +316,7 @@ class DeepDetector():
             # Run object detection estimation using the model.
             detection_result = detector.detect(input_tensor)
 
-            # If something detected on camera, record time and update flag
+            # If something detected on camera, restart timer and flag
             if (detection_result.detections and
                (time.time() - calc.old_cmr_time) >= LIMIT_CMR_TIME):
                 calc.restart_cmr()
@@ -344,12 +344,14 @@ class DeepDetector():
             if detection_result.detections:
                 image = vizres.visualize(image, detection_result, (self.width, self.height),
                                          vizres.detect_color(detection_result)[2])
+                predicted_class = vizres.categorize(detection_result)[2]
+                
                 # Either collect all images or image with correct labels
                 if all_images:
-                    video.save_img(image, detection_result, calc.det_count, calc.img_count)
+                    video.save_img(image, predicted_class, calc.det_count, calc.img_count)
                     calc.img_up()
-                elif vizres.categorize(detection_result)[2] == true_label:
-                    video.save_img(image, detection_result, calc.det_count, calc.img_count)
+                elif predicted_class  == true_label:
+                    video.save_img(image, predicted_class, calc.det_count, calc.img_count)
                     calc.img_up()
             else:
                 image = vizres.visualize(image, detection_result)

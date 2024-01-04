@@ -167,3 +167,97 @@ class TraditionalDetector():
         # Return list of recorded data
         return (calc.delay_list, calc.fps_list, calc.reg_latency_list, calc.coil_latency_list,
                 self.detected_list, self.feature_list, self.pred_list, self.true_label_list)
+    
+    
+    def capture(self, det_type: str, true_label: str, all_images: bool, vid_filename: str):
+        """Method to capture detected object
+        Args:
+            det_type: Type of detections (color OR shape).
+            true_label: true label for detected object.
+            all_images: True/False whether to collect all images.
+            vid_filename: filename of output video.
+        """
+        # Define Flag and Calculator instance
+        flags = Flags()
+        calc = Calculator()
+        
+        # Define camera instance and frame resolution
+        cap = cv2.VideoCapture(0)
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.width)
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.height)
+        
+        # Define the codec and create VideoWriter Object
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        out = cv2.VideoWriter(vid_filename, fourcc, 30, (self.width, self.height))
+        
+        # Continuously capture images from the camera and run inference
+        print("DETECTION STARTED!")
+        print("")
+            
+        while cap.isOpened():
+            success, image = cap.read()
+            if not success:
+                sys.exit(
+                    'ERROR: Unable to read from webcam. Please verify your webcam settings.'
+                )
+            calc.frame_up()
+
+            # Remove unwanted background
+            bbox = process.remove_background(image)
+            
+            # Detect object
+            if det_type == "color":
+                predictions = process.color_detection(image, bbox)
+            elif det_type == "shape":
+                predictions = process.contour_detection(image, bbox)
+
+            # If something detected on camera, restart timer and flag
+            if (predictions[0] and
+               (time.time() - calc.old_cmr_time) >= LIMIT_CMR_TIME):
+                calc.restart_cmr()
+                flags.reverse_msg()
+
+            # Only print result once every detection session
+            if (flags.print_message):
+                # Update counter and flags
+                calc.det_up()
+                calc.img_count = 1
+                flags.reverse_msg()
+                
+                # print messages
+                print(f"Detection Session: {calc.det_count}")
+                print("Images of object has been collected.")
+
+                # If there is multiple type of object
+                if self.is_multiple:
+                    true_label = input("True label of the object: ")
+                print("")
+
+            # If detected
+            if predictions[0]:
+                # Either collect all images or image with correct labels
+                if all_images:
+                    video.save_img(image, predictions[3], calc.det_count, calc.img_count)
+                    calc.img_up()
+                elif predictions[3] == true_label:
+                    video.save_img(image, predictions[3], calc.det_count, calc.img_count)
+                    calc.img_up()
+
+            # Show the FPS
+            calc.calculate_fps()
+            fps_text = f"FPS = {round(calc.fps, 1)}"
+            vizres.show_fps(img=image, text=fps_text, resolution=(self.width, self.height))
+            
+            # Write Image to Videos
+            out.write(image)
+
+            # Stop the program if the ESC key is pressed.
+            if cv2.waitKey(1) == 27:
+                break
+            cv2.imshow('object_detector', image)
+
+        # Release everything if job is finished
+        cap.release()
+        out.release()
+        cv2.destroyAllWindows()
+        print("DETECTION STOPPED!")

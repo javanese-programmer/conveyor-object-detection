@@ -15,12 +15,12 @@ IMAGE_DIR = r'/home/pi/Desktop/Object Detection/Raspberry Pi/image'
 VIDEO_DIR = r'/home/pi/Desktop/Object Detection/Raspberry Pi/video'
 PARENT_DIR = r'/home/pi/Desktop/Object Detection/Raspberry Pi'
 
-def save_img(image: np.ndarray, detection_result: processor.DetectionResult,
+def save_img(image: np.ndarray, predicted_class: str,
              detection_counter: int, image_counter: int):
     """Change directory and save image
     Args:
         image: the input image
-        detection_result: The list of all "Detection" entities to be visualize.
+        predicted_class: predicted class of the object
         detection_counter: count of detection session
         image_counter: count of images saved
     """
@@ -29,7 +29,7 @@ def save_img(image: np.ndarray, detection_result: processor.DetectionResult,
     os.chdir(IMAGE_DIR)
     current_date = datetime.datetime.now()
     img_filename = (current_date.strftime("%d%m%Y") + "_" +
-                    vizres.categorize(detection_result)[2] +
+                    predicted_class +
                     "_" + str(detection_counter) +
                     "_" + str(image_counter) + ".jpg")
     cv2.imwrite(img_filename, image)
