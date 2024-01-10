@@ -42,7 +42,7 @@ class DeepDetector():
         # Define detection option
         base_options = core.BaseOptions(
             file_name=self.model, use_coral=self.enable_edgetpu, num_threads=self.num_threads)
-        detection_options = processor.DetectionOptions(max_results=3, score_threshold=0.5)
+        detection_options = processor.DetectionOptions(max_results=3, score_threshold=0.42)
         self.options = vision.ObjectDetectorOptions(
             base_options=base_options, detection_options=detection_options)
         
@@ -119,10 +119,13 @@ class DeepDetector():
                     'ERROR: Unable to read from webcam. Please verify your webcam settings.'
                 )
             calc.frame_up()
-            image = cv2.flip(image, 1)
+            
+            # Additional Processing: Apply special filter (sharpen)
+            kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]], dtype=np.float32)
+            processed = cv2.filter2D(image, -1, kernel)
 
             # Convert the image from BGR to RGB as required by the TFLite model.
-            rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            rgb_image = cv2.cvtColor(processed, cv2.COLOR_BGR2RGB)
 
             # Create a TensorImage object from the RGB image.
             input_tensor = vision.TensorImage.create_from_array(rgb_image)
