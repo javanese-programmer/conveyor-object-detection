@@ -1,7 +1,11 @@
 """This module contains Deep Learning Object Detector Class with associated methods"""
 
+import sys
+import time
+
 import numpy as np
 import cv2
+from pyModbusTCP.server import ModbusServer, DataBank
 
 from utils import terminal, array, video 
 from processing import process, vizres
@@ -33,12 +37,15 @@ class TraditionalDetector():
         self.true_label_list = []
         
     
-    def detect(self, det_type: str, true_label: str, ip_address: str):
+    def detect(self, det_type: str, true_label: str, is_server: bool, client_address: str,
+               server_address: str):
         """Method to run traditional object detection.
         Args:
             det_type: Type of detections (color OR shape).
             true_label: true label for detected object.
-            ip_address: IP address of PLC to be connected.
+            is_server: flag to decide whether raspberry pi is server or not
+            client_address: IP address of client (PLC) to be connected.
+            server_address: IP address of Modbus server.
         Return:
             delay_list: list of recorded delay_time
             fps_list: list of recorded FPS value
@@ -47,14 +54,24 @@ class TraditionalDetector():
             pred_list: list of predicted values for detection sessions
             true_label_list: list of true label for detection sessions
         """
+        print("DETECTION STARTED!")
+        
         # Define LED and IR instance
         prepare_gpio()
         ir = Infrared(right_ir=22, left_ir=16) # We will use left IR
         led = Led(yellow=18, red=11, blue=15)
         
         # Initialize PLC instance and classid-to-bit dict
-        plc = PLC(ip_address)
         id_to_bit = {'0': '001', '1': '010', '2': '100', '404': '000'}
+        if is_server:
+            server_data, server_id = prepare_server()
+            server = ModbusServer(server_address, 5020, no_block=True,
+                                  data_bank=server_data, device_id=server_id)
+            print("Starting server...")
+            server.start()
+            print("Server is online")
+        else:
+            plc = PLC(client_address)
         
         # Define Flag and Calculator instance
         flags = Flags()
@@ -66,7 +83,6 @@ class TraditionalDetector():
         cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.height)
 
         # Continuously capture images from the camera and run inference
-        print("DETECTION STARTED!")
         while cap.isOpened():
             success, image = cap.read()
             if not success:
@@ -131,11 +147,17 @@ class TraditionalDetector():
                 
                 # Send data to PLC
                 calc.start_coil()
-                plc.write_bits(id_to_bit[str(self.id_list[-1])])
+                if is_server:
+                    server_set_di(server_data, id_to_bit[str(self.id_list[-1])])
+                else:
+                    plc.write_bits(id_to_bit[str(self.id_list[-1])])
                 calc.calc_coil_latency()
 
                 calc.start_reg()
-                plc.write_words(self.feature_list[-1])
+                if is_server:
+                    server_set_ir(server_data, self.feature_list[-1])
+                else:
+                    plc.write_words(self.feature_list[-1])
                 calc.calc_reg_latency()
                 
                 # If there is multiple type of object, promp user to input its true color
@@ -154,15 +176,23 @@ class TraditionalDetector():
 
             # Stop the program if the ESC key is pressed.
             if cv2.waitKey(1) == 27:
+                print("")
                 break
+            
             cv2.imshow('object_detector', image)
 
         cap.release()
-        led.turn_off()
-        print("")
-        plc.write_bits('000')
-        plc.write_words((0,0,0))
         cv2.destroyAllWindows()
+        
+        led.turn_off()
+        clean_gpio()
+        
+        server_set_di(server_data, '000') if is_server else plc.write_bits('000')
+        server_set_ir(server_data, (0,0,0)) if is_server else plc.write_words((0,0,0))
+        
+        print("Shutdown server...")
+        server.stop()
+        print("Server is offline")
         print("DETECTION STOPPED!")
         
         # Return list of recorded data

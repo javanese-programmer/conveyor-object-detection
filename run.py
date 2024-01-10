@@ -63,10 +63,20 @@ def parse_arguments():
         required=False,
         default=False)
     parser.add_argument(
+        '--isServer',
+        help='Whether Raspberry Pi will act as modbus server or client',
+        required=False,
+        default=True)
+    parser.add_argument(
         '--PLCAddress',
         help='IP Address of the PLC to be sent detection data to',
         required=False,
         default='10.42.26.129')
+    parser.add_argument(
+        '--EthAddress',
+        help='IP Address of the Ethernet so Raspberry Pi can act as a server',
+        required=False,
+        default='10.42.26.165')
     parser.add_argument(
         '--csvFilename',
         help='Name or path of the output CSV file.',
@@ -86,23 +96,22 @@ def main():
     
     if args.method == 'deeplearning':
         detector = DeepDetector(bool(args.multipleObject), args.model,
-                                    args.frameWidth, args.frameHeight,
-                                    int(args.numThreads),bool(args.enableEdgeTPU))
+                                args.frameWidth, args.frameHeight,
+                                int(args.numThreads),bool(args.enableEdgeTPU))
     
     elif args.method == 'traditional':
         if str(args.detectionType) == 'category':
-            args.detectionType = terminal.prompt_type()    
+            args.detectionType = terminal.prompt_type()
         detector = TraditionalDetector(bool(args.multipleObject), args.frameWidth,
                                        args.frameHeight)
-        
     
-    result = detector.detect(str(args.detectionType), str(args.trueLabel),
-                             str(args.PLCAddress))
+    result = detector.detect(str(args.detectionType), str(args.trueLabel), bool(args.isServer),
+                             str(args.PLCAddress), str(args.EthAddress))
     record = array.stack_array(result[0][0:], result[1][0:],
                                result[2][0:], result[3][0:],
                                result[4][0:], result[5][0:],
                                result[6][0:], result[7][0:])
-    array.create_csv(record, args.method, str(args.detectionType), str(args.csvFilename))    
+    array.create_csv(record, args.method, str(args.detectionType), str(args.csvFilename))
     dly_arr, dt_count,_ = array.collect_data(result[0])
     fps_arr, fps_count, _ = array.collect_data(result[1])
     _, _, dtct_ratio = array.collect_data(result[4])

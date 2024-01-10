@@ -5,6 +5,7 @@ import time
 import numpy as np
 
 import cv2
+from pyModbusTCP.server import ModbusServer, DataBank
 from tflite_support.task import core
 from tflite_support.task import processor
 from tflite_support.task import vision
@@ -52,12 +53,15 @@ class DeepDetector():
         self.true_label_list = []
         
     
-    def detect(self, det_type: str, true_label: str, ip_address: str):
+    def detect(self, det_type: str, true_label: str, is_server: bool, client_address: str,
+               server_address: str):
         """Method to run detection using deep learning method.
         Args:
             det_type: Type of detections (color, shape, or category).
             true_label: true label for detected object.
-            ip_address: IP address of PLC to be connected.
+            is_server: flag to decide whether raspberry pi is server or not
+            client_address: IP address of client (PLC) to be connected.
+            server_address: IP address of Modbus server.
         Return:
             delay_list: list of recorded delay_time
             fps_list: list of recorded FPS value
@@ -66,6 +70,7 @@ class DeepDetector():
             final_pred_list: list of predicted values for detection sessions
             true_label_list: list of true label for detection sessions
         """
+        print("DETECTION STARTED!")
         # Variable to collect detections
         pred_list, index_list, score_list = [], [], []
 
@@ -83,8 +88,16 @@ class DeepDetector():
         led = Led(yellow=18, red=11, blue=15)
         
         # Initialize PLC instance and classid-to-bit dict
-        plc = PLC(ip_address)
         id_to_bit = {'0': '001', '1': '010', '2': '100'}
+        if is_server:
+            server_data, server_id = prepare_server()
+            server = ModbusServer(server_address, 5020, no_block=True,
+                                  data_bank=server_data, device_id=server_id)
+            print("Starting server...")
+            server.start()
+            print("Server is online")
+        else:
+            plc = PLC(client_address)
         
         # Define Flag and Calculator instance
         flags = Flags()
@@ -99,7 +112,6 @@ class DeepDetector():
         detector = vision.ObjectDetector.create_from_options(self.options)
 
         # Continuously capture images from the camera and run inference
-        print("DETECTION STARTED!")
         while cap.isOpened():
             success, image = cap.read()
             if not success:
@@ -173,7 +185,7 @@ class DeepDetector():
                     
                 # Send data to plc
                 calc.start_coil()
-                plc.write_bits('000')
+                server_set_di(server_data, '000') if is_server else plc.write_bits('000')
                 calc.calc_coil_latency()
                 
                 if label_length == 1:
@@ -181,7 +193,7 @@ class DeepDetector():
                 else:
                     array.update_list([self.final_pred_list], [(0,0,0)])
                     calc.start_reg()
-                    plc.write_words((0,0,0))
+                    server_set_ir(server_data, (0,0,0)) if is_server else plc.write_words((0,0,0))
                     calc.calc_reg_latency()
                 
                 # Update detected result list
@@ -215,12 +227,18 @@ class DeepDetector():
                 
                 # Send data to plc based on index
                 calc.start_coil()
-                plc.write_bits(id_to_bit[str(index_list[object_id])])
+                if is_server:
+                    server_set_di(server_data, id_to_bit[str(index_list[object_id])])
+                else:
+                    plc.write_bits(id_to_bit[str(index_list[object_id])])
                 calc.calc_coil_latency()
                 
                 if label_length != 1:
                     calc.start_reg()
-                    plc.write_words(pred_list[object_id])
+                    if is_server:
+                        server_set_ir(server_data, pred_list[object_id])
+                    else:
+                        plc.write_words(pred_list[object_id])
                     calc.calc_reg_latency()
                     
                 # Update detected result list
@@ -247,16 +265,22 @@ class DeepDetector():
 
             # Stop the program if the ESC key is pressed.
             if cv2.waitKey(1) == 27:
+                print("")
                 break
             cv2.imshow('object_detector', image)
 
         cap.release()
-        led.turn_off()
-        plc.write_bits('000')
-        plc.write_words((0,0,0))
-        clean_gpio()
         cv2.destroyAllWindows()
-        print("")
+        
+        led.turn_off()
+        clean_gpio()
+        
+        server_set_di(server_data, '000') if is_server else plc.write_bits('000')
+        server_set_ir(server_data, (0,0,0)) if is_server else plc.write_words((0,0,0))
+        
+        print("Shutdown server...")
+        server.stop()
+        print("Server is offline")
         print("DETECTION STOPPED!")
 
         # Return list of recorded data
