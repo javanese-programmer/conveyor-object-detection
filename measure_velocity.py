@@ -1,14 +1,12 @@
-""" Script to measure the velocity of conveyor belt """
+"""Script to measure velocity of the conveyor belt."""
 
-# Import depedencies
 import time
 from tkinter import Tk, Button, Frame, BOTH
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# import sensor module
-from hardware.sensor import *
+from hardware.sensor import prepare_gpio, clean_gpio, Infrared
 from constant import LIMIT_IR_TIME, RANGE
 
 # Create an instance of tkinter frame or window
@@ -22,7 +20,7 @@ win.geometry("400x400")
 win.resizable(True, True)
 
 # Name the window
-win.title('Velocity Measurement')
+win.title("Velocity Measurement")
 
 # Set a flag
 is_running = False
@@ -44,8 +42,7 @@ par_count = np.arange(0, len(velocity), 1)
 
 
 def measure():
-    """Continously measure conveyor velocity until stop button pressed"""
-
+    """Continously measure conveyor velocity until stop button pressed."""
     global left_ir_time
     global right_ir_time
     global old_left_ir_time
@@ -60,7 +57,7 @@ def measure():
             if (time.time() - old_right_ir_time) >= LIMIT_IR_TIME:
                 right_ir_time = time.time()
 
-        if ((left_ir_time != 0) and (right_ir_time != 0)):
+        if (left_ir_time != 0) and (right_ir_time != 0):
             delay = right_ir_time - left_ir_time
             if delay > 0:
                 detected_velocity = round((RANGE / delay), 4)
@@ -77,7 +74,8 @@ def measure():
 
 
 def create_csv(columns: list, filename: str):
-    """Create a CSV file from stacked array
+    """Create a CSV file from stacked array.
+
     Args:
       columns: List of the name of columns for CSV file
       filename: Name or path of the CSV file
@@ -88,7 +86,7 @@ def create_csv(columns: list, filename: str):
 
 
 def collect_data():
-    """Collecting data from detection."""
+    """Collect data from detection."""
     # Convert list to numpy array
     global par_arr
     par_arr = np.array(velocity)
@@ -98,13 +96,14 @@ def collect_data():
 
 
 def plot_data(show_mean: bool):
-    """plot and save image from detection parameters.
+    """Plot measurement data.
+
     Args:
       show_mean: whether to show the mean of the graph or not
     """
     # Plot the image
     plt.figure(figsize=(10, 10))
-    plt.plot(par_count, par_arr, color='red', label='velocity', linewidth=3)
+    plt.plot(par_count, par_arr, color="red", label="velocity", linewidth=3)
 
     if show_mean:
         # Calculate mean of the parameter
@@ -112,10 +111,11 @@ def plot_data(show_mean: bool):
         # Plot it
         plt.axhline(
             par_mean,
-            color='blue',
-            label='mean',
+            color="blue",
+            label="mean",
             linewidth=2,
-            linestyle='--')
+            linestyle="--"
+        )
 
     # Add title and label
     plt.title("Velocity Graph")
@@ -135,13 +135,14 @@ def plot_data(show_mean: bool):
 
 # Define a function to start the loop
 def on_start():
-    """Function to start measuremenet"""
+    """Start measuremenet."""
     global is_running
     is_running = True
 
+
 # Define a function to stop the loop
 def on_stop():
-    """Function to stop measuremenet"""
+    """Stop measuremenet."""
     global is_running
     is_running = False
 
@@ -152,34 +153,37 @@ pane = Frame(win)
 pane.pack(fill=BOTH, expand=True)
 
 # Add a Button to start/stop the loop
-start = Button(pane, text="Start", command=on_start,
-               background="green", fg="white")
+start = Button(pane, text="Start", command=on_start, background="green", fg="white")
 start.pack(padx=10, expand=True, fill=BOTH)
-stop = Button(pane, text="Stop", command=on_stop,
-              background="red", fg="white")
+stop = Button(pane, text="Stop", command=on_stop, background="red", fg="white")
 stop.pack(padx=10, expand=True, fill=BOTH)
 
 # Add button to collect data, plot, and create csv
-collect_button = Button(pane, text="Collect", command=collect_data,
-                        background="blue", fg="white")
+collect_button = Button(
+    pane, text="Collect", command=collect_data, background="blue", fg="white"
+)
 collect_button.pack(padx=10, expand=True, fill=BOTH)
-plot_button = Button(pane, text="Plot",
-                     command=lambda: plot_data(True),
-                     background="orange", fg="white")
+plot_button = Button(
+    pane,
+    text="Plot",
+    command=lambda: plot_data(True),
+    background="orange",
+    fg="white"
+)
 plot_button.pack(padx=10, expand=True, fill=BOTH)
 csv = Button(
     pane,
     text="CSV",
-    command=lambda: create_csv(
-        ['velocity'],
-        "./csv_data/velocity.csv"),
+    command=lambda: create_csv(["velocity"], "./csv_data/velocity.csv"),
     background="purple",
-    fg="white")
+    fg="white",
+)
 csv.pack(padx=10, expand=True, fill=BOTH)
 
 # Add exit button
-exit_button = Button(pane, text="Exit", command=win.quit,
-                     background="black", fg="white")
+exit_button = Button(
+    pane, text="Exit", command=win.quit, background="black", fg="white"
+)
 exit_button.pack(padx=10, expand=True, fill=BOTH)
 
 
