@@ -1,7 +1,9 @@
-"""Utility functions to print/prompt data in terminal"""
+"""Utility functions to print/prompt data in terminal."""
+
 
 def print_det_time(count, ir_sns, cmr, start, delay):
-    """Print detection time in to terminal/console
+    """Print detection time into terminal/console.
+
     Args:
       count: detection count
       ir_sns: ir sensor detection time
@@ -19,7 +21,8 @@ def print_det_time(count, ir_sns, cmr, start, delay):
 
 
 def print_detected(name, score):
-    """Print messages if object is detected
+    """Print messages if object is detected.
+
     Args:
       name: name of detected object
       score: probability score
@@ -29,7 +32,8 @@ def print_detected(name, score):
 
 
 def print_undetected(count):
-    """Print messages if nothing detected
+    """Print messages if nothing is detected.
+
     Args:
       count: detection count
     """
@@ -38,7 +42,8 @@ def print_undetected(count):
 
 
 def print_dimension(dimension, score):
-    """print messages about detected dimension
+    """Print messages about detected dimension.
+
     Args:
       dimension: detected dimension of object
       score: probability score of an object
@@ -51,27 +56,30 @@ def print_dimension(dimension, score):
 
 
 def print_color(color, score):
-    """Print messages if object is detected
+    """Print messages if object is detected.
+
     Args:
       color: BGR tuple of detected object
       score: probability score
     """
     print(f"The BGR color is {color}")
     print(f"The probability is {score}")
-    
+
+
 def prompt_label():
-    """Prompt user to input the true label"""
+    """Prompt user to input the true label."""
     true_label = str(input("True label of the object: "))
-    atuple = tuple(true_label.strip('()').split(','))
+    atuple = tuple(true_label.strip("()").split(","))
     if len(atuple) == 1:
         return atuple[0]
     else:
         return (int(atuple[0]), int(atuple[1]), int(atuple[2]))
-    
+
+
 def prompt_type():
-    """Prompt user to input the true label"""
+    """Prompt user to input the true label."""
     print("For traditional method, detection type has to be shape or color")
     det_type = str(input("Detection Type: "))
     print("")
-    
+
     return det_type

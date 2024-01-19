@@ -1,4 +1,4 @@
-"""This module defines constants used in the project"""
+"""This module defines constants used in the project."""
 
 # Limit of camera detection time
 LIMIT_CMR_TIME = 8

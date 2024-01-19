@@ -1,16 +1,18 @@
-"""Functions for deep learning visualization result"""
+"""Functions for deep learning visualization result."""
 
 import cv2
 import numpy as np
 from tflite_support.task import processor
 
+
 def visualize(
     image: np.ndarray,
     detection_result: processor.DetectionResult,
     resolution: tuple = (640, 480),
-    box_color: tuple = (255, 0, 0)  # blue
+    box_color: tuple = (255, 0, 0),  # blue
 ) -> np.ndarray:
     """Draws bounding boxes on the input image and return it.
+
     Args:
       image: The input RGB image.
       detection_result: The list of all "Detection" entities to be visualize.
@@ -22,12 +24,12 @@ def visualize(
     # Define viz properties
     width, height = resolution
     size_ratio = np.sqrt(width**2 + height**2) / np.sqrt(640**2 + 480**2)
-    margin = 10      # pixels
-    row_size = 10    # pixels
+    margin = 10  # pixels
+    row_size = 10  # pixels
     font_size = 1.3 * size_ratio
     font_thickness = 2 * int(size_ratio)
     box_thickness = 3 * int(size_ratio)
-    
+
     for detection in detection_result.detections:
         # Draw bounding_box
         bbox = detection.bounding_box
@@ -39,23 +41,45 @@ def visualize(
         category = detection.categories[0]
         category_name = category.category_name
         probability = round(category.score, 2)
-        class_location = (margin + bbox.origin_x + 120,
-                         margin + row_size + bbox.origin_y)
-        score_location = (margin + bbox.origin_x + 120,
-                         margin + row_size + bbox.origin_y + 25)
-        cv2.putText(image, "Class: " + category_name, class_location, cv2.FONT_HERSHEY_PLAIN,
-                    font_size, box_color, font_thickness)
-        cv2.putText(image, "Score: " + str(probability), score_location, cv2.FONT_HERSHEY_PLAIN,
-                    font_size, box_color, font_thickness)
+        class_location = (
+            margin + bbox.origin_x + 120,
+            margin + row_size + bbox.origin_y,
+        )
+        score_location = (
+            margin + bbox.origin_x + 120,
+            margin + row_size + bbox.origin_y + 25,
+        )
+        cv2.putText(
+            image,
+            "Class: " + category_name,
+            class_location,
+            cv2.FONT_HERSHEY_PLAIN,
+            font_size,
+            box_color,
+            font_thickness,
+        )
+        cv2.putText(
+            image,
+            "Score: " + str(probability),
+            score_location,
+            cv2.FONT_HERSHEY_PLAIN,
+            font_size,
+            box_color,
+            font_thickness,
+        )
     return image
 
-def show_fps(img,
-              text: str,
-              resolution: tuple = (640, 480),
-              font=cv2.FONT_HERSHEY_PLAIN,
-              text_color: tuple = (0, 0, 255),
-              bg_color: tuple = (255, 255, 255)):
-    """Put text to image with color background
+
+def show_fps(
+    img,
+    text: str,
+    resolution: tuple = (640, 480),
+    font=cv2.FONT_HERSHEY_PLAIN,
+    text_color: tuple = (0, 0, 255),
+    bg_color: tuple = (255, 255, 255),
+):
+    """Put text to image with color background.
+
     Args:
       img: image to be added with text.
       text: text to put in image.
@@ -66,21 +90,37 @@ def show_fps(img,
     """
     # Define viz properties
     img_width, img_height = resolution
-    size_ratio = np.sqrt(img_width**2 + img_height**2) / np.sqrt(640**2 + 480**2)
+    size_ratio = np.sqrt(img_width**2 + img_height**2) / np.sqrt(
+        640**2 + 480**2
+    )
     x_pos = 5  # pixels
     y_pos = 5  # pixels
     font_size = 2 * size_ratio
     font_thickness = 3 * int(size_ratio)
-    
+
     text_size = cv2.getTextSize(text, font, font_size, font_thickness)[0]
     width, height = text_size
-    cv2.rectangle(img, (x_pos - 5, y_pos - 5),
-                  (x_pos + width + 5, y_pos + height + 5), bg_color, -1)
-    cv2.putText(img, text, (int(x_pos), int(y_pos + height + font_size - 1)),
-                font, font_size, text_color, font_thickness)
+    cv2.rectangle(
+        img,
+        (x_pos - 5, y_pos - 5),
+        (x_pos + width + 5, y_pos + height + 5),
+        bg_color,
+        -1,
+    )
+    cv2.putText(
+        img,
+        text,
+        (int(x_pos), int(y_pos + height + font_size - 1)),
+        font,
+        font_size,
+        text_color,
+        font_thickness,
+    )
+
 
 def localize(detection_result: processor.DetectionResult):
-    """Find object bounding box and return it
+    """Find object bounding box and return it.
+
     Args:
       detection_result: The list of all "Detection" entities.
     Returns:
@@ -102,10 +142,9 @@ def localize(detection_result: processor.DetectionResult):
         return probability, index, start_point, end_point
 
 
-def measure_dim(
-        detection_result: processor.DetectionResult,
-        frame_height: int = 480):
-    """Measure the height, width, and size of detected object in centimeters
+def measure_dim(detection_result: processor.DetectionResult, frame_height: int = 480):
+    """Measure the height, width, and size of detected object in centimeters.
+
     Args:
       detection_result: The list of all "Detection" entities.
       frame_height: The height of frame resolution
@@ -122,10 +161,10 @@ def measure_dim(
     elif frame_height == 960:
         ppi = 160.94
     else:
-        ppi = 79.327        
+        ppi = 79.327
 
     # inch to cm conversion
-    inch_to_cm = 2.54   # cm
+    inch_to_cm = 2.54  # cm
 
     # pixels to cm conversion
     pixel_to_cm = inch_to_cm / ppi
@@ -134,11 +173,11 @@ def measure_dim(
         # Collect object height and width
         bbox = detection.bounding_box
         object_height = bbox.height  # in pixels
-        object_width = bbox.width    # in pixels
+        object_width = bbox.width  # in pixels
 
         # Convert to cm
         true_height = round(object_height * pixel_to_cm, 3)  # in cm
-        true_width = round(object_width * pixel_to_cm, 3)    # in cm
+        true_width = round(object_width * pixel_to_cm, 3)  # in cm
         # Calculate size
         true_size = round(true_height * true_width, 3)  # in cm2
 
@@ -153,7 +192,8 @@ def measure_dim(
 
 
 def categorize(detection_result: processor.DetectionResult):
-    """Categorize detected objects and return its name, score, and index
+    """Categorize detected objects and return its name, score, and index.
+
     Args:
       detection_result: The list of all "Detection" entities.
     Returns:
@@ -172,7 +212,8 @@ def categorize(detection_result: processor.DetectionResult):
 
 
 def detect_color(detection_result: processor.DetectionResult):
-    """Detect the color of an object and return it
+    """Detect the color of an object and return it.
+
     Args:
       detection_result: The list of all "Detection" entities.
     Returns:

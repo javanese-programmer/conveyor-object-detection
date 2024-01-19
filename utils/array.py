@@ -1,12 +1,15 @@
-"""Utility functions to process array-like data and csv"""
+"""Utility functions to process array-like data and csv file."""
 
 import pandas as pd
 import numpy as np
 import warnings
-warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)
+
+warnings.filterwarnings("ignore", category=np.VisibleDeprecationWarning)
+
 
 def collect_data(par_list: list):
-    """Collecting data from detection.
+    """Collect data from detection.
+
     Args:
       par_list: List of recorded parameter.
     Return:
@@ -30,6 +33,7 @@ def collect_data(par_list: list):
 
 def stack_array(list_a: list, list_b: list, *args):
     """Stack multiple list together and convert it to array.
+
     Args:
       list_a: the first list to be stacked
       list_b: the second list to be stacked
@@ -58,8 +62,9 @@ def stack_array(list_a: list, list_b: list, *args):
     return final_stack
 
 
-def create_csv(stacked_arr, method:str, det_type: str, filename: str):
-    """Create a CSV file from stacked array
+def create_csv(stacked_arr, method: str, det_type: str, filename: str):
+    """Create a CSV file from stacked array.
+
     Args:
       stacked_arr: Array of stacked parameters.
       method: computer vision method (traditional or deeplearning)
@@ -68,24 +73,40 @@ def create_csv(stacked_arr, method:str, det_type: str, filename: str):
     """
     # Define CSV Columns
     columns = ["Delay", "FPS", "Latency (Regs)", "Latency (Coils)", "Detected"]
-    if method == 'deeplearning':
+    if method == "deeplearning":
         columns.extend(["Probability"])
-        if det_type == 'color':
-            columns.extend(["Blue (Pred)", "Green (Pred)", "Red (Pred)",
-                            "Blue (True)", "Green (True)", "Red (True)"])
-        elif det_type == 'shape':
-            columns.extend(["Height (Pred)", "Width (Pred)", "Size (Pred)",
-                            "Height (True)", "Width (True)", "Size (True)"])
+        if det_type == "color":
+            columns.extend(
+                [
+                    "Blue (Pred)",
+                    "Green (Pred)",
+                    "Red (Pred)",
+                    "Blue (True)",
+                    "Green (True)",
+                    "Red (True)",
+                ]
+            )
+        elif det_type == "shape":
+            columns.extend(
+                [
+                    "Height (Pred)",
+                    "Width (Pred)",
+                    "Size (Pred)",
+                    "Height (True)",
+                    "Width (True)",
+                    "Size (True)",
+                ]
+            )
         else:
             columns.extend(["Prediction", "True Label"])
-    
-    elif method == 'traditional':
-        if det_type == 'color':
+
+    elif method == "traditional":
+        if det_type == "color":
             columns.extend(["Blue", "Green", "Red"])
-        elif det_type == 'shape':
+        elif det_type == "shape":
             columns.extend(["Area", "Points"])
         columns.extend(["Prediction", "Label"])
-        
+
     # Create DataFrame and export to CSV
     recorded_data = pd.DataFrame(stacked_arr, columns=columns)
     recorded_data.to_csv(filename, index=False)
@@ -98,10 +119,11 @@ def reset_list(*args):
 
 
 def update_list(all_list: list, all_values: list):
-    """Update list with newest value
+    """Update list with newest value.
+
     Args:
       all_list: all list to be updated
       all_values: values to update list
     """
-    for (i, this_list) in enumerate(all_list):
+    for i, this_list in enumerate(all_list):
         this_list.append(all_values[i])
