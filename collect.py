@@ -1,10 +1,11 @@
 """Scripts to collect images without running a detection."""
 
 import sys
+import os
 
 import cv2
 
-IMG_ADDR = "/home/pi/Desktop/Object Detection/Raspberry Pi"
+IMG_ADDR = str(os.getcwd())
 
 counter = 0
 

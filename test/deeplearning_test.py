@@ -14,7 +14,7 @@ from tflite_support.task import vision
 from utils import vizres, array, plot
 
 # Add project directory to path before importing modules
-sys.path.insert(0, "/home/pi/Desktop/Object Detection/Raspberry Pi")
+sys.path.insert(0, str(os.getcwd()))
 
 
 def parse_argument():
@@ -32,7 +32,7 @@ def parse_argument():
         "--imgPath",
         help="Path of the test images.",
         required=False,
-        default="/home/pi/Desktop/Object Detection/Raspberry Pi/test_data",
+        default=str(os.getcwd()) + "/test_data",
     )
     parser.add_argument(
         "--numThreads",

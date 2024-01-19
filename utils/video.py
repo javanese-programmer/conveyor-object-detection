@@ -9,9 +9,9 @@ import numpy as np
 
 
 # Define images and parent directory
-IMAGE_DIR = r"/home/pi/Desktop/Object Detection/Raspberry Pi/image"
-VIDEO_DIR = r"/home/pi/Desktop/Object Detection/Raspberry Pi/video"
-PARENT_DIR = r"/home/pi/Desktop/Object Detection/Raspberry Pi"
+PARENT_DIR = str(os.getcwd())
+IMAGE_DIR = PARENT_DIR + '/' + 'image'
+VIDEO_DIR = PARENT_DIR + '/' + 'video'
 
 
 def save_img(
