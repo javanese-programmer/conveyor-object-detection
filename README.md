@@ -11,9 +11,14 @@ The main hardware used in building this tool is Raspberry Pi 4. In addition to R
 
 ---
 
-
 ## Project Overview
 
 The scope of the capstone design project can be observed in the following Figure
 
 ![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/ProjectOverview.png?raw=true)
+
+---
+
+## License
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
