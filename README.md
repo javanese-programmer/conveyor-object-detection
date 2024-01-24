@@ -28,15 +28,9 @@ The dependencies of each code in this repository can be observed in the followin
 
 ## Dataset
 
-Each dataset contains three classes. The first dataset is _Color Ducky_. The classes in this dataset are "yellow_duck", "pink_duck", and "blue_duck". This dataset contains 181 images.
+Each dataset contains three classes. The first dataset is _Color Ducky_. The classes in this dataset are "yellow_duck", "pink_duck", and "blue_duck". This dataset contains 181 images. The second dataset is _Ducky Chicken_. This dataset has classes consisting of "duck", "chick", and "cock". This dataset contains 233 images. Meanwhile, the _Ducky Frog_ dataset is only used in testing so it can be ignored. Samples for the two datasets mentioned earlier can be observed below.
 
-![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/ColorDucky.jpg?raw=true)
-
-The second dataset is _Ducky Chicken_. This dataset has classes consisting of "duck", "chick", and "cock". This dataset contains 233 images.
-
-![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DuckyChicken.jpg?raw=true)
-
-Meanwhile, the _Ducky Frog_ dataset is only used in testing so it can be ignored.
+![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/ColorDucky.jpg?raw=true) ![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DuckyChicken.jpg?raw=true)
 
 ---
 
