@@ -33,6 +33,19 @@ Each dataset contains three classes. The first dataset is _Color Ducky_. The cla
 ![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/ColorDucky.jpg?raw=true) ![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DuckyChicken.jpg?raw=true)
 
 ---
+## Model
+
+EfficientDet-Lite is a scalable model. By modifying hyperparameters such as input resolution, layer depth, and layer width, EfficientDet-Lite will experience a shift in performance and computational cost. From the model development process, five variants of EfficientDet-Lite have been produced. The variants and their performance comparison can be observed in the following table.
+
+|      **Model**     | **Parameters** | **Size (KB)** | **mAP (color)** | **mAP (shape)** |
+|:------------------:|----------------|---------------|-----------------|-----------------|
+| EfficientDet-Lite0 |    3.239.711   |     4.342     |      0,315      |      0,320      |
+| EfficientDet-Lite1 |    4.241.703   |     5.799     |      0,476      |      0,371      |
+| EfficientDet-Lite2 |    5.236.415   |     7.220     |      0,400      |      0,348      |
+| EfficientDet-Lite3 |    8.328.991   |     11.456    |      0,420      |      0,438      |
+| EfficientDet-Lite4 |   15.110.223   |     20.068    |      0,502      |      0,401      |
+
+---
 
 ## License
 
