@@ -131,6 +131,12 @@ python3 -m pip install pip --upgrade
 python3 -m pip install -r requirements.txt
 ```
 
+Before running the code, access to port 502 (Modbus port) needs to be granted to the program. This is because the port can only be accessed by the root user. Therefore, run the command to redirect port 502 to a higher port, such as 5020. Run this command every time you want to use the device as a Modbus server.
+
+```sh
+sudo iptables -t nat -A PREROUTING -p tcp --dport 502 -j REDIRECT --to-port 5020
+```
+
 **NOTE**: 
 Before running the code, copy all the libraries in the `lib` folder and then paste them at the address `~/tflite-pymodbus/lib/python3.7/site-packages` on the Raspberry Pi OS. This is because the process of installing these libraries with pip can cause errors. 
 
