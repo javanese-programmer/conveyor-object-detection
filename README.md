@@ -22,8 +22,9 @@ In preparing the EfficientDet-Lite model, the steps taken consist of image data 
 
 The dependencies of each code in this repository can be observed in the following figure. The main codes to be called are `run.py` and `capture.py`. The first code will run the detection while the second code will record the detected object.
 
-<img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DepedensiDeployment.png?raw=true" alt="diagram3" width="800" />
-
+<p align="center">
+  <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DepedensiDeployment.png?raw=true" alt="diagram3" width="800" />
+</p>
 
 ### Detection Scenarios
 
@@ -31,13 +32,17 @@ The dependencies of each code in this repository can be observed in the followin
 
 The first detection scenario is to detect objects based on color differences. For this purpose, three rubber duck objects of the same size but with different colors were prepared.
 
-<img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario1.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario2.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario3.jpg?raw=true" width="200" />
+<p align="center">
+  <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario1.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario2.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario3.jpg?raw=true" width="200" />
+</p>
 
 #### Shape Detection
 
 The second detection scenario is to detect objects based on shape differences. Therefore, three toy objects of the same color but different sizes have been prepared.
 
-<img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario4.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario5.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario6.jpg?raw=true" width="200" />
+<p align="center">
+  <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario4.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario5.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario6.jpg?raw=true" width="200" />
+</p>
 
 ---
 
@@ -45,7 +50,9 @@ The second detection scenario is to detect objects based on shape differences. T
 
 Each dataset contains three classes. The first dataset is _Color Ducky_. The classes in this dataset are "yellow_duck", "pink_duck", and "blue_duck". This dataset contains 181 images. The second dataset is _Ducky Chicken_. This dataset has classes consisting of "duck", "chick", and "cock". This dataset contains 233 images. Meanwhile, the _Ducky Frog_ dataset is only used in testing so it can be ignored. Samples for the two datasets mentioned earlier can be observed below.
 
-<img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/ColorDucky.jpg?raw=true" width="300" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DuckyChicken.jpg?raw=true" width="300" />
+<p align="center">
+  <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/ColorDucky.jpg?raw=true" width="300" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DuckyChicken.jpg?raw=true" width="300" />
+</p>
 
 ---
 ## Model
