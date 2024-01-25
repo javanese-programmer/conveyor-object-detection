@@ -24,6 +24,20 @@ The dependencies of each code in this repository can be observed in the followin
 
 ![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DepedensiDeployment.png?raw=true)
 
+### Detection Scenarios
+
+#### Color Detection
+
+The first detection scenario is to detect objects based on color differences. For this purpose, three rubber duck objects of the same size but with different colors were prepared.
+
+![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario1.jpg?raw=true) ![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario2.jpg?raw=true) ![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario3.jpg?raw=true)
+
+#### Shape Detection
+
+The second detection scenario is to detect objects based on shape differences. Therefore, three toy objects of the same color but different sizes have been prepared.
+
+![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario4.jpg?raw=true) ![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario5.jpg?raw=true) ![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario6.jpg?raw=true)
+
 ---
 
 ## Dataset
