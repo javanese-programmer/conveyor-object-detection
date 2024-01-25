@@ -18,11 +18,11 @@ The scope of the capstone design project can be observed in the following Figure
 
 In preparing the EfficientDet-Lite model, the steps taken consist of image data collection (which is stored in Google Drive), data augmentation process, labeling with Label Studio, and training process. Most of these processes were carried out at Google Collaboratory. The code will then call the resulting model on the Raspberry Pi. Both the dataset and the model can be found in the folder of the same name.
 
-![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DepedensiTraining.png?raw=true)
+![diagram2](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DepedensiTraining.png?raw=true)
 
 The dependencies of each code in this repository can be observed in the following figure. The main codes to be called are `run.py` and `capture.py`. The first code will run the detection while the second code will record the detected object.
 
-![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DepedensiDeployment.png?raw=true)
+![diagram3](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DepedensiDeployment.png?raw=true)
 
 ### Detection Scenarios
 
@@ -30,7 +30,7 @@ The dependencies of each code in this repository can be observed in the followin
 
 The first detection scenario is to detect objects based on color differences. For this purpose, three rubber duck objects of the same size but with different colors were prepared.
 
-![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario1.jpg?raw=true) ![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario2.jpg?raw=true) ![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario3.jpg?raw=true)
+<img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario1.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario2.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario3.jpg?raw=true" width="200" />
 
 #### Shape Detection
 
