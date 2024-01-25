@@ -22,7 +22,8 @@ In preparing the EfficientDet-Lite model, the steps taken consist of image data 
 
 The dependencies of each code in this repository can be observed in the following figure. The main codes to be called are `run.py` and `capture.py`. The first code will run the detection while the second code will record the detected object.
 
-![diagram3](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DepedensiDeployment.png?raw=true)
+<img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DepedensiDeployment.png?raw=true" alt="diagram3" width="800" />
+
 
 ### Detection Scenarios
 
@@ -36,7 +37,7 @@ The first detection scenario is to detect objects based on color differences. Fo
 
 The second detection scenario is to detect objects based on shape differences. Therefore, three toy objects of the same color but different sizes have been prepared.
 
-![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario4.jpg?raw=true) ![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario5.jpg?raw=true) ![diagram1](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario6.jpg?raw=true)
+<img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario4.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario5.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario6.jpg?raw=true" width="200" />
 
 ---
 
