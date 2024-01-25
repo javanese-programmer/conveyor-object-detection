@@ -47,6 +47,103 @@ EfficientDet-Lite is a scalable model. By modifying hyperparameters such as inpu
 
 ---
 
+## Requirements
+
+[![Generic badge](https://img.shields.io/badge/numpy-1.21.6-blue.svg)](https://shields.io/) [![Generic badge](https://img.shields.io/badge/pandas-1.3.5-purple.svg)](https://pandas.pydata.org/) [![Generic badge](https://img.shields.io/badge/matplotlib-3.5.3-orange.svg)](https://pandas.pydata.org/) [![Generic badge](https://img.shields.io/badge/opencv-4.5.3.56-green.svg)](https://opencv.org/) [![Generic badge](https://img.shields.io/badge/Pillow-9.4.0-red.svg)](https://pillow.readthedocs.io/en/stable/index.html) [![Generic badge](https://img.shields.io/badge/tk-0.1.0-black.svg)](https://docs.python.org/3/library/tkinter.html) 
+[![Generic badge](https://img.shields.io/badge/tflite--support-0.4.3-yellow.svg)](https://www.tensorflow.org/lite?hl=id) [![Generic badge](https://img.shields.io/badge/pymodbus-2.5.3-orange.svg)](https://pymodbus.readthedocs.io/en/latest/) [![Generic badge](https://img.shields.io/badge/pyModbusTCP-0.2.1-blue.svg)](https://pymodbustcp.readthedocs.io/en/latest/) 
+
+In running this project, the Python libraries used can be observed in the `requirements.txt` file. However, when installing the `tflite-support` library, errors may occur. Therefore, the library has been provided in the `lib` folder. To access the Raspberry Pi GPIO, the `RPi.GPIO` library is required.
+
+## Setup
+
+Before running the code in the repository, users need to set up a virtual environment with the required libraries. This code needs to be run on Raspberry OS.
+
+First, check the version of Raspberry Pi OS.
+
+```sh
+cat /etc/os-release
+```
+
+Second, update the packages on Raspberry Pi OS.
+
+```sh
+sudo apt-get update
+```
+
+Third, check the Python version. Use Python 3.7 and above.
+
+```sh
+python3 --version
+```
+
+Fourth, install virtualenv and upgrade pip.
+
+```sh
+python3 -m pip install --user --upgrade pip
+python3 -m pip install --user virtualenv
+```
+
+Fifth, create a virtual environment to run the code.
+
+```sh
+python3 -m venv ~/tflite-pymodbus
+```
+
+When the virtual environment is ready, activate the environment with the following command (this command needs to be called EVERY time you open a new Terminal).
+
+```sh
+source ~/tflite-pymodbus/bin/activate
+```
+
+Clone the repository from the project and change the active directory to the project directory.
+
+```sh
+git clone https://github.com/javanese-programmer/conveyor-object-detection.git
+cd conveyor-object-detection
+```
+
+Install the dependencies of the project. When everything is installed, the code can be run immediately.
+
+```sh
+python3 -m pip install pip --upgrade
+python3 -m pip install -r requirements.txt
+```
+
+**NOTE**: 
+Before running the code, copy all the libraries in the `lib` folder and then paste them at the address `~/tflite-pymodbus/lib/python3.7/site-packages` on the Raspberry Pi OS. This is because the process of installing these libraries with pip can cause errors. 
+
+## Running the Codes
+
+The two main codes that can be used are `run.py` and `capture.py`. The first code will run the detection and establish the Raspberry Pi as a Modbus server that can send object detection data to the PLC. Meanwhile, the second will record the detection process and return both a video file and an image file.
+
+#### Main Code:
+
+```python
+python run.py
+```
+```python
+python capture.py
+```
+
+To check the arguments that can be added to the code, add `-h` after each command.
+
+```python
+python run.py -h
+```
+```python
+python capture.py -h
+```
+
+#### Other code
+
+The code below will collect images from the conveyor WITHOUT performing object detection.
+
+```python
+python collect.py
+```
+
+---
+
 ## License
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
