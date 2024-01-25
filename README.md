@@ -1,6 +1,6 @@
 # Undergraduate Capstone Project: Moving Object Detection on a Conveyor with Traditional Computer Vision and Deep Learning
 
-[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/) [![Made withJupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](https://jupyter.org/try)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1oxaT9i5JsVBN1YmcWmCMnf5iBxpiD9M8?usp=sharing)
 
 This repository contains my final project as a requirement to obtain my bachelor's degree. I developed a device to detect objects on a trainer conveyor in this project. This device is expected to be used by students to understand how similar devices work in industry. The device is connected to a programmable logic controller (PLC) through the Modbus protocol to support this goal. Through this protocol, detection data will be received by the controller so that it can be used for further processing.
 
