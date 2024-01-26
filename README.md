@@ -11,9 +11,9 @@ The main hardware used in building this tool is Raspberry Pi 4. In addition to R
 ---
 
 ## Youtube Video
-A demonstration of how the device works can be observed in the following Youtube video.
+A demonstration of how the device works can be observed in the following YouTube video.
 
-[![The Youtube Video](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/Thumbnail.jpg?raw=true)]([https://www.youtube.com/watch?v=ZrDW6tI3WWE](https://youtu.be/NyluVm7MZUU?si=-iUa0rmn3ZUJ-8rz))
+[![The Youtube Video](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/Thumbnail.jpg?raw=true)](https://youtu.be/NyluVm7MZUU?si=-iUa0rmn3ZUJ-8rz)
 
 ---
 
