@@ -69,6 +69,8 @@ Each dataset contains three classes. The first dataset is _Color Ducky_. The cla
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/ColorDucky.jpg?raw=true" width="300" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/DuckyChicken.jpg?raw=true" width="300" />
 </p>
 
+All datasets can be obtained from the `dataset` folder. The datasets have been separated for the sake of training the deep learning model (`train`) and validating its performance (`validation`).
+
 ---
 ## Model
 
