@@ -48,7 +48,7 @@ class TraditionalDetector:
         server_address: str,
     ):
         """Run traditional object detection session.
-        
+
         Args:
             det_type: Type of detections (color OR shape).
             true_label: true label for detected object.
@@ -262,7 +262,7 @@ class TraditionalDetector:
 
         # Define the codec and create VideoWriter Object
         fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-        out = cv2.VideoWriter(vid_filename, fourcc, 30, (self.width, self.height))
+        out = cv2.VideoWriter(vid_filename, fourcc, 25, (self.width, self.height))
 
         # Continuously capture images from the camera and run inference
         print("DETECTION STARTED!")

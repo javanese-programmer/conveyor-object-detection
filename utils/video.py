@@ -10,8 +10,8 @@ import numpy as np
 
 # Define images and parent directory
 PARENT_DIR = str(os.getcwd())
-IMAGE_DIR = PARENT_DIR + '/' + 'image'
-VIDEO_DIR = PARENT_DIR + '/' + 'video'
+IMAGE_DIR = PARENT_DIR + "/" + "image"
+VIDEO_DIR = PARENT_DIR + "/" + "video"
 
 
 def save_img(
