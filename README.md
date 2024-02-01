@@ -53,7 +53,7 @@ The second detection scenario is to detect objects based on shape differences. T
 
 ### Demo
 
-The difference in the detection process for the two scenarios mentioned can be observed below. 
+The difference in the detection process for the two scenarios mentioned can be observed below. When an object is detected, the user will be able to observe the object class and the collected features.
 
 <p align="center">
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_color.gif?raw=true" width="400" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_shape.gif?raw=true" width="400" />
@@ -81,6 +81,8 @@ EfficientDet-Lite is a scalable model. By modifying hyperparameters such as inpu
 | EfficientDet-Lite2 |    5.236.415   |     7.220     |      0,400      |      0,348      |
 | EfficientDet-Lite3 |    8.328.991   |     11.456    |      0,420      |      0,438      |
 | EfficientDet-Lite4 |   15.110.223   |     20.068    |      0,502      |      0,401      |
+
+The trained model can be retrieved from the `model` folder. The model name is based on the usage scenario and its variants. For example, the model `color_detector2.tflite` is the EfficientDet-Lite2 model trained for the color detection scenario.
 
 ---
 
