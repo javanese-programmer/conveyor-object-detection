@@ -56,7 +56,7 @@ The second detection scenario is to detect objects based on shape differences. T
 The difference in the detection process for the two scenarios mentioned can be observed below. 
 
 <p align="center">
-  <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_color.gif?raw=true" width="300" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_shape.gif?raw=true" width="300" />
+  <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_color.gif?raw=true" width="400" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_shape.gif?raw=true" width="400" />
 </p>
 
 ---
