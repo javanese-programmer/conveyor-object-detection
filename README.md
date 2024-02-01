@@ -69,14 +69,14 @@ These performance values can also be observed in greater detail within the CSV f
 
 | **Column**       | **Description**                                                  |
 |------------------|------------------------------------------------------------------|
-| Delay            | Waktu tunda antara kamera dan IR                                 |
+| Delay            | Delay time between camera and IR                                 |
 | FPS              | Detection frame rate                                             |
 | Latency (Regs)   | Latency between Raspberry Pi and PLC registers                   |
 | Latency (Coils)  | Latency between Raspberry Pi and PLC coils                       |
 | Detected         | Boolean value whether the object is detected or not              |
 | Probability      | (Deep Learning) Prediction probability for the object            |
 | Blue, Green, Red | (Traditional) BGR color obtained from object detection           |
-| Area, Points     | (Tradisional) Parameter kontur yang diperoleh dari deteksi objek |
+| Area, Points     | (Traditional) Contour parameters obtained from object detection  |
 | Prediction       | (Traditional) Predicted object class                             |
 | Label            | (Traditional) True object class                                  |
 | Feature (Pred)   | (Deep Learning) Model-predicted features                         |
