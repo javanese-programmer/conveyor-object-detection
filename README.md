@@ -59,6 +59,12 @@ The difference in the detection process for the two scenarios mentioned can be o
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_color.gif?raw=true" width="400" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_shape.gif?raw=true" width="400" />
 </p>
 
+Besides the detection video, other outputs of the program consist of a message on the terminal, a detection performance graph, and a CSV file. The terminal message and the resulting performance graph can be observed below. 
+
+<p align="center">
+  <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/graph1.jpg?raw=true" width="500" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/graph2.jpg?raw=true" width="500" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/graph3.jpg?raw=true" width="200" />
+</p>
+
 ---
 
 ## Dataset
