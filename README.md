@@ -37,7 +37,7 @@ The dependencies of each code in this repository can be observed in the followin
 
 #### Color Detection
 
-The first detection scenario is to detect objects based on color differences. For this purpose, three rubber duck objects of the same size but with different colors were prepared.
+The first detection scenario is to detect objects based on color differences. For this purpose, three rubber duck objects of the same size but with different colors were prepared. When detecting objects based on color, the program will return the predicted class index and a tuple containing the RGB value of the object. These two values will be extracted by the PLC.
 
 <p align="center">
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario1.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario2.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario3.jpg?raw=true" width="200" />
@@ -45,10 +45,18 @@ The first detection scenario is to detect objects based on color differences. Fo
 
 #### Shape Detection
 
-The second detection scenario is to detect objects based on shape differences. Therefore, three toy objects of the same color but different sizes have been prepared.
+The second detection scenario is to detect objects based on shape differences. Therefore, three toy objects of the same color but different sizes have been prepared. In shape detection, the predicted class index will also be collected. However, in this scenario, the RGB value will be replaced by the size or dimension parameter of the object. For example, the program will return the area of the object in pixels and the approximate corner points of the contour.  
 
 <p align="center">
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario4.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario5.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario6.jpg?raw=true" width="200" />
+</p>
+
+### Demo
+
+The difference in the detection process for the two scenarios mentioned can be observed below. 
+
+<p align="center">
+  <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_color.gif?raw=true" width="300" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_shape.gif?raw=true" width="300" />
 </p>
 
 ---
