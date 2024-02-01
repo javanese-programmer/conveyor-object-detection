@@ -62,7 +62,7 @@ The difference in the detection process for the two scenarios mentioned can be o
 Besides the detection video, other outputs of the program consist of a message on the terminal, a detection performance graph, and a CSV file. The terminal message and the resulting performance graph can be observed below. 
 
 <p align="center">
-  <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/graph1.jpg?raw=true" width="500" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/graph2.jpg?raw=true" width="500" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/graph3.jpg?raw=true" width="200" />
+  <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/Terminal_Message.png?raw=true" width="500" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/graph1.jpg?raw=true" width="500" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/graph2.jpg?raw=true" width="500" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/graph3.jpg?raw=true" width="300" />
 </p>
 
 ---
