@@ -51,7 +51,9 @@ The second detection scenario is to detect objects based on shape differences. T
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario4.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario5.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario6.jpg?raw=true" width="200" />
 </p>
 
-### Detection Output
+---
+
+## Project Demo
 
 The difference in the detection process for the two scenarios mentioned can be observed below. When an object is detected, the user will be able to observe the object class and the collected features.
 
