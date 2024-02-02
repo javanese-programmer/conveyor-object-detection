@@ -42,13 +42,13 @@ The first detection scenario is to detect objects based on color differences. Fo
 <p align="center">
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario1.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario2.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario3.jpg?raw=true" width="200" />
 </p>
-<center>
+
 |  **Class**  | **Blue** | **Green** | **Red** |
 |:-----------:|:--------:|:---------:|:-------:|
 | yellow_duck |    55    |    232    |   254   |
 |  blue_duck  |    205   |    172    |    73   |
 |  pink_duck  |    211   |    130    |   255   |
-</center>
+
 
 #### Shape Detection
 
@@ -57,13 +57,13 @@ The second detection scenario is to detect objects based on shape differences. T
 <p align="center">
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario4.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario5.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario6.jpg?raw=true" width="200" />
 </p>
-<center>
+
 | **Class** | **Height (cm)** | **Width (cm)** | **Size (cm2)** |
 |:---------:|:---------------:|:--------------:|:--------------:|
 |    duck   |        5        |        5       |       25       |
 |    cock   |        6        |        4       |       24       |
 |   chick   |        5        |        4       |       20       |
-</center>
+
 
 ---
 
