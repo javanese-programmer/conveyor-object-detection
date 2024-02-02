@@ -13,36 +13,38 @@ def parse_arguments():
     )
     parser.add_argument(
         "--method",
-        help="Two computer vision method: traditional or deeplearning",
+        help="Two computer vision method: traditional or deeplearning.",
         required=False,
         type=str,
         default="deeplearning",
     )
     parser.add_argument(
         "--detectionType",
-        help="Type of object detection: color, shape, or category",
+        help="""For deeplearning, three types of object detection are
+                provided: color, shape, or category.
+                For traditional, only two types are provided: color or shape.""",
         required=False,
         default="color",
     )
     parser.add_argument(
         "--multipleObject",
-        help="Whether to detect single or multiple types of objects.",
+        help="Whether to detect objects with single or multiple classes.",
         required=False,
         default=False,
     )
     parser.add_argument(
         "--trueLabel",
-        help="""If it is color detection, input (Blue, Green, Red)
-                of the object. Else if shape, input (Height, Width, Size).
-                Else, input class_name of the object. In traditional,
-                the label is also class_name""",
+        help="""For deeplearning, if it is color detection, input
+                (Blue, Green, Red) of the object. Else if shape, input
+                (Height, Width, Size). Else, input class_name of the object.
+                For traditional, the label is also class_name""",
         required=False,
         type=str,
         default="(55, 232, 254)",
     )
     parser.add_argument(
         "--model",
-        help="Path of the object detection model.",
+        help="For deeplearning, path of the object detection model.",
         required=False,
         default="./model/color_detector2.tflite",
     )
@@ -62,14 +64,14 @@ def parse_arguments():
     )
     parser.add_argument(
         "--numThreads",
-        help="Number of CPU threads to run the model.",
+        help="For deeplearning, number of CPU threads to run the model.",
         required=False,
         type=int,
         default=4,
     )
     parser.add_argument(
         "--enableEdgeTPU",
-        help="Whether to run the model on EdgeTPU.",
+        help="For deeplearning, whether to run the model on EdgeTPU.",
         action="store_true",
         required=False,
         default=False,
@@ -82,13 +84,15 @@ def parse_arguments():
     )
     parser.add_argument(
         "--plcAddress",
-        help="IP Address of the PLC to be sent detection data to",
+        help="""In client mode, IP Address of the PLC to which request
+                will be sent""",
         required=False,
         default="10.42.26.129",
     )
     parser.add_argument(
         "--ethAddress",
-        help="IP Address of the Ethernet so Raspberry Pi can act as a server",
+        help="""In server mode, Ethernet Address of the Raspberry Pi so
+                that it can receive requests from the PLC""",
         required=False,
         default="10.42.26.165",
     )

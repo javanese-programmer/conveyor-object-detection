@@ -19,32 +19,36 @@ def parse_argument():
     )
     parser.add_argument(
         "--detectionType",
-        help="Type of detection for traditional method: color OR shape",
+        help="""For traditional method, two types of detection are
+                provided: color or shape.
+                For deeplearning, this argument is not needed.""",
         required=False,
         default="color",
     )
     parser.add_argument(
         "--multipleObject",
-        help="Whether to detect single or multiple types of objects.",
+        help="Whether to detect objects with single or multiple classes.",
         required=False,
         default=False,
     )
     parser.add_argument(
         "--trueClass",
-        help="Name of the object class to be detected if it is a single type.",
+        help="""For single class, name of the object class to be detected.
+                For multiple, this argument is not needed.""",
         required=False,
         type=str,
         default="yellow_duck",
     )
     parser.add_argument(
         "--collectAll",
-        help="Whether to collect all images or only the True Positive one.",
+        help="""Whether to collect all images of detected objects or
+                only the detections with correct labels.""",
         required=False,
         default=False,
     )
     parser.add_argument(
         "--model",
-        help="Path of the object detection model.",
+        help="For deeplearning, path of the object detection model.",
         required=False,
         default="./model/frogducky2.tflite",
     )
@@ -64,14 +68,14 @@ def parse_argument():
     )
     parser.add_argument(
         "--numThreads",
-        help="Number of CPU threads to run the model.",
+        help="For deeplearning, number of CPU threads to run the model.",
         required=False,
         type=int,
         default=4,
     )
     parser.add_argument(
         "--enableEdgeTPU",
-        help="Whether to run the model on EdgeTPU.",
+        help="For deeplearning, whether to run the model on EdgeTPU.",
         action="store_true",
         required=False,
         default=False,
