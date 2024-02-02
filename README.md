@@ -82,16 +82,18 @@ These performance values can also be observed in greater detail within the CSV f
 | Feature (Pred)   | (Deep Learning) Model-predicted features                        | (Height, Width) centimeters |
 | Feature (True)   | (Deep Learning) True feature value                              | (Height, Width) centimeters |
 
-During detection, the resulting data can be accessed by the PLC. For illustration, in this project, the PLC used is PLC M221 from Schneider Electric. This PLC can be programmed with Ecostruxure Machine Expert - Basic software to receive data. Through this software, the detection data will be able to be observed and further processed.
+During detection, the resulting data can be accessed by the PLC. For illustration, in this project, the PLC used is PLC M221 from Schneider Electric. This PLC can be programmed with _Ecostruxure Machine Expert - Basic_ software to receive data. Through this software, the detection data will be able to be observed and further processed.
 
 ![diagram3](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/PLCasClient2Annotated.png?raw=true)
 ![diagram4](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/PLCasClient3Annotated.png?raw=true)
 
-Simple processing can be performed. For example, with predicted class index data, the PLC can be programmed to turn on I/O indicator lights based on class. Programming is done with Ladder Diagram. This change can be observed below.
+Simple processing can be performed. For example, with predicted class index data, the PLC can be programmed to turn on I/O indicator lights based on class. Programming is done with Ladder Diagram. This change can be observed below. The changes to the PLC can be observed below. More complex processing can be performed as needed.
 
 <p align="center">
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/PLC.gif?raw=true" width="600" />
 </p>
+
+This data transmission is possible because the Raspberry Pi acts as a Modbus Server or Modbus Client. By default, the Raspberry Pi will run _as a server_. Nonetheless, the Modbus communication mode of the Raspberry Pi can be changed through program arguments.
 
 ---
 
