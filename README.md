@@ -84,7 +84,8 @@ These performance values can also be observed in greater detail within the CSV f
 
 During detection, the resulting data can be accessed by the PLC. For illustration, in this project, the PLC used is PLC M221 from Schneider Electric. This PLC can be programmed with Ecostruxure Machine Expert - Basic software to receive data. Through this software, the detection data will be able to be observed and further processed.
 
-![diagram3](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/PLCasClient.PNG?raw=true)
+![diagram3](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/PLCasClient2Annotated.png?raw=true)
+![diagram4](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/PLCasClient3Annotated.png?raw=true)
 
 
 
