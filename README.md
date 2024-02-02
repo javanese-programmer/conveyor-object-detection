@@ -56,7 +56,7 @@ The second detection scenario is to detect objects based on shape differences. T
 The difference in the detection process for the two scenarios mentioned can be observed below. When an object is detected, the user will be able to observe the object class and the collected features.
 
 <p align="center">
-  <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_color.gif?raw=true" width="450" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_shape.gif?raw=true" width="450" />
+  <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_color.gif?raw=true" width="400" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_shape.gif?raw=true" width="400" />
 </p>
 
 Besides the detection video, other outputs of the program consist of a message on the terminal, a detection performance graph, and a CSV file. The terminal message and the resulting performance graph can be observed below. The performance visualized here consists of the delay time between camera and IR sensor detection, frame rate, and detected/undetected object ratio.
@@ -89,7 +89,9 @@ During detection, the resulting data can be accessed by the PLC. For illustratio
 
 Simple processing can be performed. For example, with predicted class index data, the PLC can be programmed to turn on I/O indicator lights based on class. Programming is done with Ladder Diagram. This change can be observed below.
 
-![plc_gif](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/PLC.gif?raw=true)
+<p align="center">
+  <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/PLC.gif?raw=true" width="600" />
+</p>
 
 ---
 
