@@ -43,13 +43,12 @@ The first detection scenario is to detect objects based on color differences. Fo
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario1.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario2.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario3.jpg?raw=true" width="200" />
 </p>
 
-<div align="center">
+<div align="center">Some test</div>
 |  **Class**  | **Blue** | **Green** | **Red** |
 |:-----------:|:--------:|:---------:|:-------:|
 | yellow_duck |    55    |    232    |   254   |
 |  blue_duck  |    205   |    172    |    73   |
 |  pink_duck  |    211   |    130    |   255   |
-</div>
 
 #### Shape Detection
 
