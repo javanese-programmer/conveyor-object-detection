@@ -53,7 +53,7 @@ The second detection scenario is to detect objects based on shape differences. T
 
 ---
 
-## Project Demo
+## Object Detection
 
 The difference in the detection process for the two scenarios mentioned can be observed below. When an object is detected, the user will be able to observe the object class and the collected features.
 
@@ -84,7 +84,9 @@ These performance values can also be observed in greater detail within the CSV f
 | Feature (Pred)   | (Deep Learning) Model-predicted features                        | (Height, Width) centimeters |
 | Feature (True)   | (Deep Learning) True feature value                              | (Height, Width) centimeters |
 
-### Programmable Logic Controller
+---
+
+## Programmable Logic Controller
 
 During detection, the resulting data can be accessed by the PLC. For illustration, in this project, the PLC used is PLC M221 from Schneider Electric. This PLC can be programmed with _Ecostruxure Machine Expert - Basic_ software to receive data. Through this software, the detection data will be able to be observed and further processed.
 
