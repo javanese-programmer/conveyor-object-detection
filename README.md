@@ -260,6 +260,14 @@ python collect.py
 
 ---
 
+## Traditional CV vs Deep Learning: A Comparison
+
+In [a paper by O'Mahony, N et.al.](https://link.springer.com/chapter/10.1007/978-3-030-17795-9_10), traditional computer vision methods, such as color thresholding, can be used for problems that deep learning methods are not suitable for solving. One of the problems mentioned is the classification of products on an assembly line conveyor belt. Therefore, in this project, traditional and deep learning methods have been implemented and compared.
+
+![diagram5](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/MethodDelay.png?raw=true)
+
+---
+
 ## License
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
