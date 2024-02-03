@@ -272,8 +272,19 @@ When the time taken to detect objects is compared, EfficientDet-Lite1 (the light
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/deeplearning_color.gif?raw=true" width="400" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/deeplearning_shape.gif?raw=true" width="400" />
 </p>
 
+Detection with Deep Learning is generally probabilistic so objects can be mislabeled or not detected at all. This is a shortcoming of Deep Learning methods compared to traditional methods.  However, this program has been developed to handle these conditions. 
+
+---
+## Conclusion
+
+This project shows that I have successfully developed a system to recognize objects on a conveyor for student training purposes. The developed system combines Raspberry Pi 4 and PLC with Modbus protocol. To recognize the objects, traditional computer vision methods and deep learning have been implemented.
+
+In this case, traditional methods are indeed superior to Deep Learning. The reason is that the environment for object detection is constrained and fixed. However, in a more dynamic environment, the traditional methods used here would not be able to match the capabilities of Deep Learning. 
+
 ---
 
 ## License
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+---
