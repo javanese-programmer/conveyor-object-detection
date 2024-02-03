@@ -1,4 +1,4 @@
-# Undergraduate Capstone Project: Moving Object Detection on a Conveyor with Traditional Computer Vision and Deep Learning
+# Undergraduate Capstone Project: Moving Object Detection System on a Trainer Conveyor with Raspberry Pi and Schneider M221 PLC
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1oxaT9i5JsVBN1YmcWmCMnf5iBxpiD9M8?usp=sharing)
 
