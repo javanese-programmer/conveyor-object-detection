@@ -33,7 +33,7 @@ class DeepDetector:
         enable_edgetpu: bool,
     ):
         """Init an object instance from the class.
-        
+
         Args:
             is_multiple: True/False whether there is multiple type of object.
             model: Name of the TFLite object detection model.
@@ -78,7 +78,7 @@ class DeepDetector:
         server_address: str,
     ):
         """Run detection using deep learning method.
-        
+
         Args:
             det_type: Type of detections (color, shape, or category).
             true_label: true label for detected object.
