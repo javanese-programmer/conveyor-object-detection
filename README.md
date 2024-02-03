@@ -99,7 +99,7 @@ During detection, the resulting data can be accessed by the PLC. For illustratio
 ![diagram3](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/PLCasClient2Annotated.png?raw=true)
 ![diagram4](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/PLCasClient3Annotated.png?raw=true)
 
-Simple processing can be performed. For example, with predicted class index data, the PLC can be programmed to turn on I/O indicator lights based on class. Programming is done with Ladder Diagram. This change can be observed below. The changes to the PLC can be observed below. More complex processing can be performed as needed.
+Simple processing can be performed. For example, with predicted class index data, the PLC can be programmed to turn on I/O indicator lights based on class. Programming is done with Ladder Diagram. The changes to the PLC can be observed below. More complex processing can be performed as needed.
 
 <p align="center">
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/PLC.gif?raw=true" width="600" />
@@ -253,6 +253,16 @@ python collect.py
 - Resistor 220 Ohm
 
 ![electrical  parts](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/ElectricalParts.png?raw=true)
+
+### Other Peripherals
+
+- SunFounder 7-inch Monitor
+- Keyboard
+- Mouse
+- HDMI to Micro-HDMI Cable (To connect the monitor)
+- USB to Micro-USB Cable (To connect the monitor)
+
+![electrical  parts](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/ElectricalParts2.png?raw=true)
 
 ---
 
