@@ -239,6 +239,23 @@ python collect.py
 
 ---
 
+## Hardware
+
+### Electrical Parts
+
+- Raspberry Pi 4B
+- Camera Module OV5647
+- IR sensor
+- Jumper cable
+- Ethernet cable
+- Breadboard
+- LED
+- Resistor 220 Ohm
+
+![electrical  parts](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/ElectricalParts.png?raw=true)
+
+---
+
 ## License
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
