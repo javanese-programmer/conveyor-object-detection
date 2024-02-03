@@ -51,14 +51,6 @@ The second detection scenario is to detect objects based on shape differences. T
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario4.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario5.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario6.jpg?raw=true" width="200" />
 </p>
 
-When presented in a table, the object classes defined in both scenarios can be observed below. In the table, object features such as RGB color and height-width-size have been written down. The shape feature of the object has been converted to `int` type so that it can be sent to the PLC register.
-
-|    **Class**    | **Blue** | **Green** | **Red** | ***** | **Class** | **Height** | **Width** | **Size** |
-|:---------------:|:--------:|:---------:|:-------:|:-----:|:---------:|:----------:|:---------:|:--------:|
-| **yellow_duck** |    55    |    232    |   254   | ***** |  **duck** |      5     |     5     |    25    |
-|  **blue_duck**  |    205   |    172    |    73   | ***** |  **cock** |      6     |     4     |    24    |
-|  **pink_duck**  |    211   |    130    |   255   | ***** | **chick** |      5     |     4     |    20    |
-
 ---
 
 ## Project Demo
