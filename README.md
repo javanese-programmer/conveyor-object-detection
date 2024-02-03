@@ -51,7 +51,17 @@ The second detection scenario is to detect objects based on shape differences. T
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario4.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario5.jpg?raw=true" width="200" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/scenario6.jpg?raw=true" width="200" />
 </p>
 
-### Output
+When presented in a table, the object classes defined in both scenarios can be observed below. In the table, object features such as RGB color and height-width-size have been written down. The shape feature of the object has been converted to `int` type so that it can be sent to the PLC register.
+
+|    **Class**    | **Blue** | **Green** | **Red** | ***** | **Class** | **Height** | **Width** | **Size** |
+|:---------------:|:--------:|:---------:|:-------:|:-----:|:---------:|:----------:|:---------:|:--------:|
+| **yellow_duck** |    55    |    232    |   254   | ***** |  **duck** |      5     |     5     |    25    |
+|  **blue_duck**  |    205   |    172    |    73   | ***** |  **cock** |      6     |     4     |    24    |
+|  **pink_duck**  |    211   |    130    |   255   | ***** | **chick** |      5     |     4     |    20    |
+
+---
+
+## Project Demo
 
 The difference in the detection process for the two scenarios mentioned can be observed below. When an object is detected, the user will be able to observe the object class and the collected features.
 
@@ -59,7 +69,7 @@ The difference in the detection process for the two scenarios mentioned can be o
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_color.gif?raw=true" width="400" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/trad_shape.gif?raw=true" width="400" />
 </p>
 
-Besides the detection video, other outputs of the program consist of a message on the terminal, a detection performance graph, and a CSV file. The terminal message and the resulting performance graph can be observed below. The performance visualized here consists of the delay time between camera and IR sensor detection, frame rate, and detected/undetected object ratio.
+Besides the detection video, other outputs of the program consist of a message on the terminal, detection performance graphs, and a CSV file. The terminal message and the resulting performance graphs can be observed below. The performance visualized here consists of the delay time between camera and IR sensor detection, frame rate, and detected/undetected object ratio.
 
 <p align="center">
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/Terminal_Message.png?raw=true" width="400" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/graph1.jpg?raw=true" width="400" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/graph2.jpg?raw=true" width="400" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/graph3.jpg?raw=true" width="250" />
@@ -82,16 +92,20 @@ These performance values can also be observed in greater detail within the CSV f
 | Feature (Pred)   | (Deep Learning) Model-predicted features                        | (Height, Width) centimeters |
 | Feature (True)   | (Deep Learning) True feature value                              | (Height, Width) centimeters |
 
-During detection, the resulting data can be accessed by the PLC. For illustration, in this project, the PLC used is PLC M221 from Schneider Electric. This PLC can be programmed with Ecostruxure Machine Expert - Basic software to receive data. Through this software, the detection data will be able to be observed and further processed.
+### Programmable Logic Controller
+
+During detection, the resulting data can be accessed by the PLC. For illustration, in this project, the PLC used is PLC M221 from Schneider Electric. This PLC can be programmed with _Ecostruxure Machine Expert - Basic_ software to receive data. Through this software, the detection data will be able to be observed and further processed.
 
 ![diagram3](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/PLCasClient2Annotated.png?raw=true)
 ![diagram4](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/PLCasClient3Annotated.png?raw=true)
 
-Simple processing can be performed. For example, with predicted class index data, the PLC can be programmed to turn on I/O indicator lights based on class. Programming is done with Ladder Diagram. This change can be observed below.
+Simple processing can be performed. For example, with predicted class index data, the PLC can be programmed to turn on I/O indicator lights based on class. Programming is done with Ladder Diagram. This change can be observed below. The changes to the PLC can be observed below. More complex processing can be performed as needed.
 
 <p align="center">
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/PLC.gif?raw=true" width="600" />
 </p>
+
+This data transmission is possible because the Raspberry Pi acts as a Modbus Server or Modbus Client. By default, the Raspberry Pi will run _as a server_. Nonetheless, the Modbus communication mode of the Raspberry Pi can be changed through program arguments.
 
 ---
 
