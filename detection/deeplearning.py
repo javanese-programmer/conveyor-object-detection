@@ -149,12 +149,8 @@ class DeepDetector:
                 )
             calc.frame_up()
 
-            # Additional Processing: Apply special filter (sharpen)
-            kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]], dtype=np.float32)
-            processed = cv2.filter2D(image, -1, kernel)
-
             # Convert the image as required by the TFLite model.
-            rgb_image = cv2.cvtColor(processed, cv2.COLOR_BGR2RGB)
+            rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
             # Create a TensorImage object from the RGB image.
             input_tensor = vision.TensorImage.create_from_array(rgb_image)
@@ -398,7 +394,6 @@ class DeepDetector:
                 )
 
             calc.frame_up()
-            image = cv2.flip(image, 1)
 
             # Convert the image as required by the TFLite model.
             rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
