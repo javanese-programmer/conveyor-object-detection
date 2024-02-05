@@ -266,7 +266,7 @@ In [a paper by O'Mahony, N et.al.](https://link.springer.com/chapter/10.1007/978
 
 ![diagram5](https://github.com/javanese-programmer/conveyor-object-detection/blob/main/image/MethodDelay.png?raw=true)
 
-When the time taken to detect objects is compared, EfficientDet-Lite1 (the lightest variant of the EfficientDet model) costs _4 times_ as much. This cost will increase for other EfficientDet variants until it reaches _45 times_ for EfficientDet-Lite4. As a result, detection with the Deep Learning model will be slower as shown below.
+When the time taken to detect objects is compared, EfficientDet-Lite0 (the lightest variant of the EfficientDet model) costs _4 times_ as much as the traditional method. This cost will increase for other EfficientDet variants until it reaches _45 times_ for EfficientDet-Lite4. As a result, detection with the Deep Learning model will be slower as shown below.
 
 <p align="center">
   <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/deeplearning_color.gif?raw=true" width="400" /> <img src="https://github.com/javanese-programmer/conveyor-object-detection/blob/main/video/deeplearning_shape.gif?raw=true" width="400" />
