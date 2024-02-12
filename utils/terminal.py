@@ -73,7 +73,11 @@ def prompt_label():
     if len(atuple) == 1:
         return atuple[0]
     else:
-        return (int(atuple[0]), int(atuple[1]), int(atuple[2]))
+        return (
+            int(round(float(atuple[0]))),
+            int(round(float(atuple[1]))),
+            int(round(float(atuple[2]))),
+        )
 
 
 def prompt_type():

@@ -103,7 +103,11 @@ class DeepDetector:
         if label_length == 1:
             true_label = atuple[0]
         else:
-            true_label = (int(atuple[0]), int(atuple[1]), int(atuple[2]))
+            true_label = (
+                int(round(float(atuple[0]))),
+                int(round(float(atuple[1]))),
+                int(round(float(atuple[2]))),
+            )
 
         # Define LED and IR instance
         prepare_gpio()
