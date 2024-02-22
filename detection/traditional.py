@@ -160,6 +160,52 @@ class TraditionalDetector:
                 flags.reverse_cmr()
                 flags.reverse_msg()
 
+            # Else, if only detected on IR
+            elif (
+                flags.detected_ir
+                and (not flags.detected_cmr)
+                and ((time.time() - calc.old_ir_time) >= LIMIT_IR_TIME)
+            ):
+                # Print message
+                terminal.print_undetected(calc.det_count)
+
+                # Turn off LED
+                led.turn_off()
+
+                # If there are multiple types of object,
+                # prompt user to input true label
+                if self.is_multiple:
+                    true_label = terminal.prompt_label()
+
+                # Send data to plc
+                calc.start_coil()
+                server_set_di(server_data, "000") if is_server else plc.write_bits(
+                    "000"
+                )
+                calc.calc_coil_latency()
+
+                calc.start_reg()
+                server_set_ir(server_data, (0, 0, 0)) if is_server else plc.write_words(
+                    (0, 0, 0)
+                )
+                calc.calc_reg_latency()
+
+                # Update detected result list
+                calc.update_data(False)
+                array.update_list(
+                    [
+                        self.detected_list,
+                        self.id_list,
+                        self.feature_list,
+                        self.pred_list,
+                    ],
+                    list(predictions),
+                )
+                array.update_list([self.true_label_list], [true_label])
+
+                # Reset flag
+                flags.reverse_ir()
+
             # Only print result once every detection session
             if flags.print_message:
                 # print messages
